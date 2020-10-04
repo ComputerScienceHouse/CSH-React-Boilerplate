@@ -8,7 +8,6 @@ import {
   InMemoryWebStorage,
 } from "@axa-fr/react-oidc-context";
 import oidcConfiguration from "./config";
-import PageContainer from "./containers/PageContainer";
 import LoggingIn from "./callbacks/LoggingIn";
 
 ReactDOM.render(
