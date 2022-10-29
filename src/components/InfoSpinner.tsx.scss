@@ -1,0 +1,46 @@
+.spinner-container {
+    display: flex;
+}
+
+.spinner-container.centered {
+    justify-content: center;
+}
+
+.info-spinner,
+.info-spinner:after {
+    width: 2em;
+    height: 2em;
+}
+
+.info-spinner {
+    border-width: 0.4em;
+}
+
+.spinner-text {
+    margin-left: 6px;
+    line-height: 1.6em;
+}
+
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

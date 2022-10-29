@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import './index.tsx.css'
 import App from './App'
 import { OidcProvider, OidcSecure } from '@axa-fr/react-oidc'
 import configuration from './configuration'
