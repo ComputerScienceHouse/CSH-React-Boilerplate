@@ -29,3 +29,4 @@ build
 node_modules
 dist
 .env.local
+.vscode
