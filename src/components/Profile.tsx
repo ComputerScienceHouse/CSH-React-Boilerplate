@@ -31,10 +31,7 @@ const Profile: React.FunctionComponent = () => {
                 <span className="caret" />
             </DropdownToggle>
             <DropdownMenu>
-                <DropdownItem href='https://conditional.csh.rit.edu/dashboard/'>Dashboard</DropdownItem>
                 <DropdownItem href='https://members.csh.rit.edu'>Members</DropdownItem>
-                <DropdownItem href='https://conditional.csh.rit.edu/attendance_cm'>Classic Directorship Attendance</DropdownItem>
-                <DropdownItem href='https://conditional.csh.rit.edu/attendance_ts'>Classic Seminar Attendance</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem onClick={() => logout(null)}>Logout</DropdownItem>
             </DropdownMenu>

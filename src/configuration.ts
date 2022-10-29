@@ -13,4 +13,6 @@ const oidcConfig: OidcConfiguration = {
     refresh_time_before_tokens_expiration_in_second: 10,
 }
 
+export const SSOEnabled = true
+
 export default oidcConfig

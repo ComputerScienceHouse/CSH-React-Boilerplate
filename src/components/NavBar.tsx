@@ -22,7 +22,7 @@ const NavBar: React.FunctionComponent = () => {
             <Navbar color='primary' dark expand='lg' fixed='top'>
                 <Container>
                     <NavLink to='/' className={'navbar-brand'}>
-                        ImHere
+                        CSH React Boilerplate
                     </NavLink>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
@@ -32,11 +32,9 @@ const NavBar: React.FunctionComponent = () => {
                                     Home
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink to='/attendance' className='nav-link'>
-                                    Attendance
-                                </NavLink>
-                            </NavItem>
+                            {
+                                // to add stuff to the navbar, add a NavItem tag with a NavLink to the route
+                            }
                         </Nav>
                         <Nav navbar className='ml-auto'>
                             <Profile />
