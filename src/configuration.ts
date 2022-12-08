@@ -13,6 +13,6 @@ const oidcConfig: OidcConfiguration = {
     refresh_time_before_tokens_expiration_in_second: 10,
 }
 
-export const SSOEnabled = true
+export const SSOEnabled = (process.env.REACT_APP_SSO_ENABLED ?? 'true') === 'true'
 
 export default oidcConfig
