@@ -1,30 +1,37 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./components/App";
-import {
-  AuthenticationProvider,
-  oidcLog,
-  InMemoryWebStorage,
-} from "@axa-fr/react-oidc-context";
-import oidcConfiguration from "./config";
-import { LoggingIn } from "./callbacks/LoggingIn";
-import { Authenticating } from "./callbacks/Authenticating";
-import { NotAuthenticated } from "./callbacks/NotAuthenticated";
-import { NotAuthorized } from "./callbacks/NotAuthorized";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.tsx.css'
+import App from './App'
+import { OidcProvider, OidcSecure } from '@axa-fr/react-oidc'
+import configuration from './configuration'
+import { SSOEnabled } from './configuration'
+import Authenticating from './callbacks/Authenticating'
+import AuthenticationError from './callbacks/AuthenticationError'
+import Loading from './callbacks/Loading'
+import SessionLost from './callbacks/SessionLost'
 
-ReactDOM.render(
-  <AuthenticationProvider
-    configuration={oidcConfiguration}
-    loggerLevel={oidcLog.DEBUG}
-    isEnabled={true}
-    UserStore={InMemoryWebStorage}
-    callbackComponentOverride={LoggingIn}
-    authenticating={Authenticating}
-    notAuthenticated={NotAuthenticated}
-    notAuthorized={NotAuthorized}
-  >
-    <App />
-  </AuthenticationProvider>,
-  document.getElementById("root")
-);
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+)
+// handle security in here, and routing in app
+
+root.render(
+  <>
+    {
+      SSOEnabled ?
+        <OidcProvider
+          configuration={configuration}
+          authenticatingComponent={Authenticating}
+          authenticatingErrorComponent={AuthenticationError}
+          loadingComponent={Loading}
+          sessionLostComponent={SessionLost}
+        >
+          < OidcSecure >
+            <App />
+          </OidcSecure >
+        </OidcProvider >
+        : <App />
+    }
+  </>
+)
+
