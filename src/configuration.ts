@@ -1,4 +1,4 @@
-import { OidcConfiguration } from "@axa-fr/react-oidc/dist/vanilla/types"
+import { OidcConfiguration } from "@axa-fr/react-oidc"
 
 const oidcConfig: OidcConfiguration = {
     client_id: process.env.REACT_APP_SSO_CLIENT_ID ?? 'test',
