@@ -9,6 +9,7 @@ import {
 } from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 import Profile from './Profile'
+import ThemeToggle from './ThemeToggle'
 
 const NavBar: React.FunctionComponent = () => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -39,6 +40,7 @@ const NavBar: React.FunctionComponent = () => {
                         <Nav navbar className='ml-auto'>
                             <Profile />
                         </Nav>
+                        <ThemeToggle/>
                     </Collapse>
                 </Container>
             </Navbar>
