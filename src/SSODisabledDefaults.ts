@@ -39,7 +39,7 @@ export const NoSSOUserInfo: UserInfo = {
     email: 'baz@csh.rit.edu'
 }
 
-export const NoSSOProfilePicture = 'https://cdn.discordapp.com/attachments/719366780606480384/1035722437049982986/csh.png'
+export const NoSSOProfilePicture = 'https://assets.csh.rit.edu/pubsite/csh_logo_square.svg'
 
 export const getUseOidcHook = () => {
     return SSOEnabled ? useOidc : useOidcNoSSO
