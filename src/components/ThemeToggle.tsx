@@ -1,33 +1,41 @@
-import React, { useEffect } from 'react'
-const ThemeToggle: React.FunctionComponent = () => {
+import {useEffect, useState} from "react";
+import {useConstCallback} from "powerhooks";
+import {Helmet} from "react-helmet-async";
 
-    useEffect(() => {
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        if ((document.body.classList.contains("dark-theme") !== prefersDarkScheme.matches)) {
-            let element = document.getElementById('theme-indicator');
-            console.log(element);
-            if (element != null) {
-                toggleTheme(element);
-            }
-        }
-    })
+const darkQuery = () => window.matchMedia("(prefers-color-scheme: dark)");
 
-    const toggleTheme = (target: HTMLElement) => {
-        if (document.body.classList.contains("dark-theme")) {
-            document.body.classList.remove('dark-theme');
-            target.innerHTML = '<span class="material-icons-outlined" style="font-size: 32px">dark_mode</span>';
-        }
-        else {
-            document.body.classList.add('dark-theme');
-            target.innerHTML = '<span class="material-icons-outlined" style="font-size: 32px">light_mode</span>';
-        }
-    }
+export default function ThemeToggle() {
+  const [darkMode, setDarkMode] = useState(() => darkQuery().matches);
+  useEffect(() => {
+    const query = darkQuery();
+    const onMediaChange = (event: {matches: boolean}) => {
+      setDarkMode(event.matches);
+    };
+    onMediaChange(query);
+    return () => {
+      query.removeEventListener("change", onMediaChange);
+    };
+  }, []);
 
-    return (
-        <div id="theme-indicator" style={{ width: "32px", height: "32px"}} 
-            onClick={(e) => { toggleTheme(e.currentTarget) }}>
-        </div>
-    )
+  const onThemeToggle = useConstCallback(() => {
+    setDarkMode((darkMode) => !darkMode);
+  });
+
+  return (
+    <>
+      <Helmet>
+        <body className={darkMode ? "dark-theme" : undefined} />
+      </Helmet>
+      <button
+        style={{width: "32px", height: "32px"}}
+        onClick={onThemeToggle}
+        className="icon-button"
+        role="toggle"
+      >
+        <span className="material-icons-outlined" style={{fontSize: "32px"}}>
+          {darkMode ? "dark_mode" : "light_mode"}
+        </span>
+      </button>
+    </>
+  );
 }
-
-export default ThemeToggle

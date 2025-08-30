@@ -1,20 +1,17 @@
-import React from "react"
-import { Container } from "reactstrap"
-import NavBar from "../components/NavBar"
+import {Container} from "reactstrap";
+import NavBar from "../components/NavBar";
 
 type Props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-export const PageContainer: React.FC<Props> = ({ children }) => {
-    return (
-        <div style={{ marginTop: '90px' }}>
-            <Container className="main" fluid>
-                <NavBar />
-                <Container>{children}</Container>
-            </Container>
-        </div>
-    )
+export default function PageContainer({children}: Props) {
+  return (
+    <div className="page-and-navbar">
+      <NavBar />
+      <Container className="main" fluid>
+        <Container className="main-child">{children}</Container>
+      </Container>
+    </div>
+  );
 }
-
-export default PageContainer

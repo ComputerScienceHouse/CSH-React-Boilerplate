@@ -1,33 +1,67 @@
 # CSH React Boilerplate
 
-Ever wanted to create a CSH house service in React but realized that auth is hard and that react is big and scary? This boilerplate attempts to solve that issue.
+## Getting Started
 
-This provides all the setup work needed to create a CSH React app quickly. This may not fit all use cases, and you may want to modify things heavily. Go ahead!
-This is simply a starting place.
+Build the container
 
-## Local Development
-You're going to need [node](https://nodejs.org/en/).
-
-### Setup with npm
+``` sh
+docker build -t csh-react-boilerplate .
 
 ```
-npm install
+
+Run the container
+
+``` sh
+docker run -p 8080:8080 csh-react-boilerplate:latest
 ```
 
-### Run in development
+## React + TypeScript + Vite
 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+### Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+});
 ```
-npm start
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from "eslint-plugin-react";
+
+export default tseslint.config({
+  // Set the react version
+  settings: {react: {version: "18.3"}},
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs["jsx-runtime"].rules,
+  },
+});
 ```
-
-In order to run locally, you're going to need an OIDC client, by default there's a `.env` file which defines all variables you don't want to commit to the repo directly. The default SSO variables will work for development purposes. It will only work on `http://localhost:3000`.
-For more information on CSH SSO, and getting an OIDC client, talk to an RTP.
-
-
-All variables need to be prepended with `REACT_APP_`
-
-___
-
-## Help! I don't have a CSH account or I dont want to secure the website in development!
-
-No problem! You can disable SSO in `configuration.ts` by changing `SSOEnabled` to `'false'`, or alternatively, you can set the `REACT_APP_SSO_ENABLED` variable to false.
